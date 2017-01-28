@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import com.cabreramax.challenge.commands.InvalidCommand;
 import com.cabreramax.challenge.commands.LeftCommand;
 import com.cabreramax.challenge.commands.MoveCommand;
 import com.cabreramax.challenge.commands.PlaceCommand;
@@ -15,7 +16,7 @@ public class CommandsTranslatorTest {
     @Test
     public void testWhenValidMoveInputThenTranslateToMoveCommand() {
         
-        String input = "MOVE";
+        String[] input = {"MOVE"};
         
         assertTrue( CommandsTranslator.getInstance().translate(input) instanceof MoveCommand );
     }
@@ -23,7 +24,7 @@ public class CommandsTranslatorTest {
     @Test
     public void testWhenValidLeftInputThenTranslateToLeftCommand() {
         
-        String input = "LEFT";
+    	String[] input = {"LEFT"};
         
         assertTrue( CommandsTranslator.getInstance().translate(input) instanceof LeftCommand );
     }
@@ -31,7 +32,7 @@ public class CommandsTranslatorTest {
     @Test
     public void testWhenValidRightInputThenTranslateToRightCommand() {
         
-        String input = "RIGHT";
+    	String[] input = {"RIGHT"};
         
         assertTrue( CommandsTranslator.getInstance().translate(input) instanceof RightCommand );
     }
@@ -39,7 +40,7 @@ public class CommandsTranslatorTest {
     @Test
     public void testWhenValidReportInputThenTranslateToReportCommand() {
         
-        String input = "REPORT";
+    	String[] input = {"REPORT"};
         
         assertTrue( CommandsTranslator.getInstance().translate(input) instanceof ReportCommand );
     }
@@ -47,8 +48,16 @@ public class CommandsTranslatorTest {
     @Test
     public void testWhenValidPlaceInputThenTranslateToPlaceCommand() {
         
-        String input = "PLACE 0,0,NORTH";
+    	String[] input = {"PLACE", "0,0,NORTH"};
         
         assertTrue( CommandsTranslator.getInstance().translate(input) instanceof PlaceCommand );
+    }
+    
+    @Test
+    public void testWhenInvalidInputThenTranslateToInvalidCommand() {
+        
+    	String[] input = {"JUMP"};
+        
+        assertTrue( CommandsTranslator.getInstance().translate(input) instanceof InvalidCommand );
     }
 }

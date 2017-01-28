@@ -8,10 +8,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FileInputHandler {
-
-	public List<String> handleInput( String inputsPath ) throws FileNotFoundException {
+	
+	private final String INPUT_PARAM_SEPARATOR = " ";
+	
+	public List<String[]> handleInput( String inputsPath ) throws FileNotFoundException {
 			
-		List<String> inputsList = new ArrayList<String>();
+		List<String[]> inputsList = new ArrayList<String[]>();
 		
 		BufferedReader br = null;
 		FileReader fr = null;
@@ -23,7 +25,7 @@ public class FileInputHandler {
             String line;
             
             while ( (line = br.readLine()) != null ) {
-            	inputsList.add(line);
+            	inputsList.add(line.split(INPUT_PARAM_SEPARATOR)); // we expect a command and (optional) params
             }
             
         } catch (IOException e) {

@@ -2,7 +2,6 @@ package com.cabreramax.challenge.handlers;
 
 import static org.junit.Assert.*;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -31,7 +30,7 @@ public class FileInputHandlerTest {
         
         try {
         	
-        	List<String> inputsListExpected = buildInputListExpected();
+        	List<String[]> inputsListExpected = buildInputListExpected();
         	
         	assertArrayEquals( inputsListExpected.toArray(), (new FileInputHandler()).handleInput(COMMANDS_INPUT_FILE_PATH).toArray() );
         
@@ -55,33 +54,30 @@ public class FileInputHandlerTest {
         }
     }
     
-    private List<String> buildInputListExpected() {
+    private List<String[]> buildInputListExpected() {
 		
-		return new ArrayList<String>(
-    			
-    			Arrays.asList(
-    					new String("MOVE"),
-    					new String("LEFT"),
-    					new String("JOE"),
-    					new String("RIGHT"),
-    					new String("REPORT"),
-    					new String("PLACE 0,0,NORTH"),
-    					new String("REPORT"),
-    					new String("MOVE"),
-    					new String("LOL"),
-    					new String("LEFT"),
-    					new String("MOVE"),
-    					new String("LEFT"),
-    					new String("MOVE"),
-    					new String("REPORT"),
-    					new String("PLACE 10,9,NORTH"),
-    					new String("REPORT"),
-    					new String("PLACE 3,4,JOHN"),
-    					new String("REPORT"),
-    					new String("PLACE 4,3,EAST"),
-    					new String("MOVE"),
-    					new String("REPORT")
-    			)
-    	);
+		return Arrays.asList(
+    					new String[] {"MOVE"},
+    					new String[] {"LEFT"},
+    					new String[] {"JOE"},
+    					new String[] {"RIGHT"},
+    					new String[] {"REPORT"},
+    					new String[] {"PLACE", "0,0,NORTH"},
+    					new String[] {"REPORT"},
+    					new String[] {"MOVE"},
+    					new String[] {"LOL"},
+    					new String[] {"LEFT"},
+    					new String[] {"MOVE"},
+    					new String[] {"LEFT"},
+    					new String[] {"MOVE"},
+    					new String[] {"REPORT"},
+    					new String[] {"PLACE", "10,9,NORTH"},
+    					new String[] {"REPORT"},
+    					new String[] {"PLACE", "3,4,JOHN"},
+    					new String[] {"REPORT"},
+    					new String[] {"PLACE", "4,3,EAST"},
+    					new String[] {"MOVE"},
+    					new String[] {"REPORT"}
+    			);
 	}
 }

@@ -29,13 +29,25 @@ public class CommandsTranslator {
 		commandDictionary.put("LEFT", new LeftCommand());
 		commandDictionary.put("RIGHT", new RightCommand());
 		commandDictionary.put("REPORT", new ReportCommand());
-		commandDictionary.put("PLACE", new ReportCommand());
+		commandDictionary.put("PLACE", new PlaceCommand());
 		
 		setDictionary(commandDictionary);
 	}
 	
-	public Command translate(String input) {
-		return getDictionary().get(input);
+	public Command translate(String[] input) {
+		
+		Command translatedCommand = getDictionary().get(input[0]);
+		
+		if ( translatedCommand == null ) {
+			
+			translatedCommand = new InvalidCommand();
+		
+		} else if ( input.length > 1 ) { // If is valid command and we receive parameters for it, we assign them
+			
+			translatedCommand.setParams(input[1]);
+		}
+	
+		return translatedCommand;
 	}
 
 	public Map<String,Command> getDictionary() {
