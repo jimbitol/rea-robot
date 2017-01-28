@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.cabreramax.challenge.domains.orientations.*;
-import com.cabreramax.challenge.orientations.SouthOrientation;
 
 public class OrientationsTranslator {
 	
@@ -28,6 +27,8 @@ public class OrientationsTranslator {
 
 		orientationDictionary.put("NORTH", new NorthOrientation());
 		orientationDictionary.put("SOUTH", new SouthOrientation());
+		orientationDictionary.put("EAST", new EastOrientation());
+		orientationDictionary.put("WEST", new WestOrientation());
 		
 		setDictionary(orientationDictionary);
 	}

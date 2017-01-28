@@ -1,6 +1,4 @@
-package com.cabreramax.challenge.orientations;
-
-import com.cabreramax.challenge.domains.orientations.Orientation;
+package com.cabreramax.challenge.domains.orientations;
 
 public class SouthOrientation extends Orientation {
 
