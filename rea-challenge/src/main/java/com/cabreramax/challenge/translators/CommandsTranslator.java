@@ -1,6 +1,8 @@
 package com.cabreramax.challenge.translators;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import com.cabreramax.challenge.domains.commands.*;
@@ -65,6 +67,17 @@ public class CommandsTranslator {
 
 	public void setDictionary(Map<String,Command> dictionary) {
 		this.dictionary = dictionary;
+	}
+
+	public List<Command> translate( List<String[]> inputs ) {
+		
+		List<Command> translatedCommands = new ArrayList<Command>();
+		
+		for ( String[] input : inputs ){
+			translatedCommands.add(translate(input));
+		}
+		
+		return translatedCommands;
 	}
 
 }

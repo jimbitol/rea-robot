@@ -1,6 +1,6 @@
 package com.cabreramax.challenge.domains.commands;
 
-public class MoveCommand implements Command {
+public class MoveCommand extends Command {
 
 	@Override
 	public void setParams(String[] params) {

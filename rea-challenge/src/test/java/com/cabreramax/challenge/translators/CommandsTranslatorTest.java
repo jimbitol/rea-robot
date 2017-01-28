@@ -2,6 +2,9 @@ package com.cabreramax.challenge.translators;
 
 import static org.junit.Assert.*;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.junit.Test;
 
 import com.cabreramax.challenge.domains.commands.*;
@@ -148,4 +151,68 @@ public class CommandsTranslatorTest {
         
         assertTrue( CommandsTranslator.getInstance().translate(input) instanceof PlaceCommand );
     }
+    
+    @Test
+    public void testWhenInputsListIsProvidedThenTranslateToCommandsList() {
+    	
+    	List<String[]> inputsReceived = buildInputsList();
+    	
+    	assertArrayEquals( buildExpectedCommandsList() , CommandsTranslator.getInstance().translate(inputsReceived).toArray() );
+    }
+    
+    private List<String[]> buildInputsList() {
+		
+		return Arrays.asList(
+    					new String[] {"MOVE"},
+    					new String[] {"LEFT"},
+    					new String[] {"JOE"},
+    					new String[] {"RIGHT"},
+    					new String[] {"REPORT"},
+    					new String[] {"PLACE", "0,0,NORTH"},
+    					new String[] {"REPORT"},
+    					new String[] {"MOVE"},
+    					new String[] {"LOL"},
+    					new String[] {"LEFT"},
+    					new String[] {"MOVE"},
+    					new String[] {"LEFT"},
+    					new String[] {"MOVE"},
+    					new String[] {"REPORT"},
+    					new String[] {"PLACE", "-1,9,NORTH"},
+    					new String[] {"REPORT"},
+    					new String[] {"PLACE", "3,4,JOHN"},
+    					new String[] {"REPORT"},
+    					new String[] {"PLACE", "4,3,EAST"},
+    					new String[] {"MOVE"},
+    					new String[] {"REPORT"}
+    			);
+	}
+    
+    private Command[] buildExpectedCommandsList() {
+    	
+    	Command[] expectedCommands = {
+		    			new MoveCommand(),
+						new LeftCommand(),
+						new InvalidCommand(),
+						new RightCommand(),
+						new ReportCommand(),
+						new PlaceCommand(),
+						new ReportCommand(),
+						new MoveCommand(),
+						new InvalidCommand(),
+						new LeftCommand(),
+						new MoveCommand(),
+						new LeftCommand(),
+						new MoveCommand(),
+						new ReportCommand(),
+						new InvalidCommand(),
+						new ReportCommand(),
+						new InvalidCommand(),
+						new ReportCommand(),
+						new PlaceCommand(),
+						new MoveCommand(),
+						new ReportCommand()
+		    	};
+		
+		return expectedCommands;
+	}
 }

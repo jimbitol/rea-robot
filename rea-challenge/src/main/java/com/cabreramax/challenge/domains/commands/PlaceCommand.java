@@ -7,7 +7,7 @@ import com.cabreramax.challenge.exceptions.InvalidOrientationException;
 import com.cabreramax.challenge.exceptions.InvalidParameterException;
 import com.cabreramax.challenge.translators.OrientationsTranslator;
 
-public class PlaceCommand implements Command {
+public class PlaceCommand extends Command {
 	
 	private Position position;
 	private Orientation orientation;

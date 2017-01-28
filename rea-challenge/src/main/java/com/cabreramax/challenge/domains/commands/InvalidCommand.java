@@ -1,6 +1,6 @@
 package com.cabreramax.challenge.domains.commands;
 
-public class InvalidCommand implements Command {
+public class InvalidCommand extends Command {
 
 	@Override
 	public void setParams(String[] params) {

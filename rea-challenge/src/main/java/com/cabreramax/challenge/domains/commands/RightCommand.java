@@ -1,6 +1,6 @@
 package com.cabreramax.challenge.domains.commands;
 
-public class RightCommand implements Command {
+public class RightCommand extends Command {
 
 	@Override
 	public void setParams(String[] params) {

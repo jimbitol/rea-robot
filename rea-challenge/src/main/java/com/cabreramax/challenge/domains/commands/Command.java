@@ -2,8 +2,14 @@ package com.cabreramax.challenge.domains.commands;
 
 import com.cabreramax.challenge.exceptions.InvalidParameterException;
 
-public interface Command {
+public abstract class Command {
 
-	void setParams(String[] params) throws InvalidParameterException;
+	public abstract void setParams(String[] params) throws InvalidParameterException;
+	
+	// this helps with tests
+	public boolean equals( Object obj ) {
+		
+		return ( obj != null ) && (getClass() == obj.getClass());
+	}
 
 }
