@@ -38,7 +38,7 @@ public class CommandsTranslator {
 	
 	public Command translate(String[] input) {
 		
-		Command translatedCommand = getDictionary().get(input[0]);
+		Command translatedCommand = getDictionary().get(input[0].toUpperCase());
 		
 		if ( translatedCommand == null ) {
 			

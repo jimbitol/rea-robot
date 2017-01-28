@@ -1,9 +1,9 @@
 package com.cabreramax.challenge.domains.orientations;
 
-public class NorthOrientation extends Orientation {
-	
+public class InvalidOrientation extends Orientation {
+
 	@Override
 	public String getOrientationName() {
-		return "NORTH";
+		return "INVALID";
 	}
 }
