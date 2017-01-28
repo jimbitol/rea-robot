@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.cabreramax.challenge.commands.*;
+import com.cabreramax.challenge.exceptions.InvalidParameterException;
+import com.cabreramax.challenge.utils.ParseUtils;
 
 public class CommandsTranslator {
 	
@@ -44,7 +46,14 @@ public class CommandsTranslator {
 		
 		} else if ( input.length > 1 ) { // If is valid command and we receive parameters for it, we assign them
 			
-			translatedCommand.setParams(input[1]);
+			try {
+				
+				translatedCommand.setParams( input[1].split(ParseUtils.INNER_PARAMETERS_SEPARATOR) );
+			
+			} catch (InvalidParameterException e) {
+				
+				translatedCommand = new InvalidCommand();
+			}
 		}
 	
 		return translatedCommand;

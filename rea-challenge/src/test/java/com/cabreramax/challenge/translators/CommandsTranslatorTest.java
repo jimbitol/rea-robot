@@ -10,6 +10,7 @@ import com.cabreramax.challenge.commands.MoveCommand;
 import com.cabreramax.challenge.commands.PlaceCommand;
 import com.cabreramax.challenge.commands.ReportCommand;
 import com.cabreramax.challenge.commands.RightCommand;
+import com.cabreramax.challenge.domains.Position;
 
 public class CommandsTranslatorTest {
 
@@ -59,5 +60,17 @@ public class CommandsTranslatorTest {
     	String[] input = {"JUMP"};
         
         assertTrue( CommandsTranslator.getInstance().translate(input) instanceof InvalidCommand );
+    }
+
+    @Test
+    public void testWhenValidPlaceInputThenPlaceCommandHasParameterizedPosition() {
+        
+    	String[] input = {"PLACE", "0,0,NORTH"};
+    	
+    	Position placePosition = new Position(0,0);
+    	
+    	PlaceCommand placeCommand = (PlaceCommand) CommandsTranslator.getInstance().translate(input);
+    	
+        assertEquals( placePosition, placeCommand.getPosition() );
     }
 }
