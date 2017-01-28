@@ -27,6 +27,9 @@ public class CommandsTranslator {
 
 		commandDictionary.put("MOVE", new MoveCommand());
 		commandDictionary.put("LEFT", new LeftCommand());
+		commandDictionary.put("RIGHT", new RightCommand());
+		commandDictionary.put("REPORT", new ReportCommand());
+		commandDictionary.put("PLACE", new ReportCommand());
 		
 		setDictionary(commandDictionary);
 	}
