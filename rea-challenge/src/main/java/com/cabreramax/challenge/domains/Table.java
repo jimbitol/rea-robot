@@ -37,7 +37,7 @@ public class Table {
 	}
 
 	public boolean isPositionInsideBounds(Position position) {
-		return ( position.getX() < getxUnits() ) && ( position.getY() < getyUnits() );
+		return ( position != null ) && ( position.getX() < getxUnits() ) && ( position.getY() < getyUnits() );
 	}
 
 }

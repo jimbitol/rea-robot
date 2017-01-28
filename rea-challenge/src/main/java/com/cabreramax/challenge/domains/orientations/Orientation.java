@@ -1,5 +1,8 @@
 package com.cabreramax.challenge.domains.orientations;
 
+import com.cabreramax.challenge.domains.Position;
+import com.cabreramax.challenge.exceptions.InvalidNumberException;
+
 public abstract class Orientation {
 	
 	public String toString() {
@@ -19,5 +22,11 @@ public abstract class Orientation {
 	}
 
 	public abstract String getOrientationName();
+
+	public abstract Position getNextPositionOf(Position position) throws InvalidNumberException;
+
+	public abstract Orientation getLeftOrientation();
+
+	public abstract Orientation getRightOrientation();
 
 }

@@ -16,7 +16,7 @@ public class ValidationUtils {
 		if ( n < 0 ) throw new InvalidNumberException("Number has to be zero or positive");
 	}
 	
-	public static boolean isValidPosition ( Position position ) {
+	public static boolean isPositionInsideBounds ( Position position ) {
 		return Table.getInstance().isPositionInsideBounds(position);
 	}
 	

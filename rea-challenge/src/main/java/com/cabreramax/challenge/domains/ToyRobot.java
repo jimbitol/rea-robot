@@ -1,6 +1,7 @@
 package com.cabreramax.challenge.domains;
 
 import com.cabreramax.challenge.domains.orientations.Orientation;
+import com.cabreramax.challenge.exceptions.InvalidNumberException;
 import com.cabreramax.challenge.utils.ValidationUtils;
 
 public class ToyRobot {
@@ -14,12 +15,46 @@ public class ToyRobot {
 
 	public void place(Position position, Orientation orientation) {
 		
-		if ( ValidationUtils.isValidPosition(position) && 
+		if ( ValidationUtils.isPositionInsideBounds(position) && 
 				ValidationUtils.isValidOrientation(orientation) ) {
 			
 			setPosition(position);
 			setOrientation(orientation);
 		}
+	}
+
+	public void move() {
+		
+		if ( isPlaced() ) {
+			
+			Position nextPosition = null;
+			
+			try {
+				nextPosition = getOrientation().getNextPositionOf( getPosition() );
+			} catch (InvalidNumberException e) {
+				// TODO
+			}
+			
+			if ( ValidationUtils.isPositionInsideBounds(nextPosition) ) setPosition(nextPosition);
+		}
+	}
+
+	public void left() {
+		
+		if ( isPlaced() ) {
+			setOrientation(getOrientation().getLeftOrientation());
+		}
+	}
+
+	public void right() {
+		
+		if ( isPlaced() ) {
+			setOrientation(getOrientation().getRightOrientation());
+		}
+	}
+
+	public void report() {
+		
 	}
 
 	public Position getPosition() {
