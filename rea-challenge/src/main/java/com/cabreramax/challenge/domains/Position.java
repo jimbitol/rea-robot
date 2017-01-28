@@ -31,6 +31,10 @@ public class Position {
 		this.y = y;
 	}
 	
+	public String toString() {
+		return getX() + "," + getY();
+	}
+	
 	public boolean equals( Object obj ) {
 		
 		boolean equals = false;

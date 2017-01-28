@@ -279,6 +279,26 @@ public class ToyRobotTest {
     	assertNotNull( bb8.getOrientation() );
     	assertTrue( bb8.getOrientation() instanceof WestOrientation );
     }
+
+	@Test
+	public void testWhenReportThenPrintOutPositionAndDirection() {
+        
+		// Expected output
+		System.out.println("3,2,SOUTH");
+		
+		String expectedOutput = printOut.toString();
+		
+		printOut.reset();
+		
+		
+		// place and report bb8
+    	bb8.place(getPosition(3,2), getOrientation("SOUTH"));
+		
+		bb8.report();
+    	
+		
+		assertEquals( expectedOutput, printOut.toString() );
+    }
 	
 	private Position getPosition(int x, int y) {
 		

@@ -55,6 +55,9 @@ public class ToyRobot {
 
 	public void report() {
 		
+		if ( isPlaced() ) {
+			System.out.println(getPosition().toString() + "," + getOrientation().toString());
+		}
 	}
 
 	public Position getPosition() {
