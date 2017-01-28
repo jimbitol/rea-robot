@@ -1,6 +1,7 @@
-package com.cabreramax.challenge.commands;
+package com.cabreramax.challenge.domains.commands;
 
 import com.cabreramax.challenge.domains.Position;
+import com.cabreramax.challenge.domains.orientations.Orientation;
 import com.cabreramax.challenge.exceptions.InvalidParameterException;
 
 public class PlaceCommand implements Command {
@@ -25,6 +26,11 @@ public class PlaceCommand implements Command {
 
 	public void setPosition( Position position ) {
 		this.placePosition = position;
+	}
+
+	public Orientation getOrientation() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

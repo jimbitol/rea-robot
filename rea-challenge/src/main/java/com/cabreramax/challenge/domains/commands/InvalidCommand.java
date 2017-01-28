@@ -1,4 +1,4 @@
-package com.cabreramax.challenge.commands;
+package com.cabreramax.challenge.domains.commands;
 
 public class InvalidCommand implements Command {
 

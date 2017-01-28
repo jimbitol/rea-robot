@@ -1,6 +1,6 @@
-package com.cabreramax.challenge.commands;
+package com.cabreramax.challenge.domains.commands;
 
-public class ReportCommand implements Command {
+public class LeftCommand implements Command {
 
 	@Override
 	public void setParams(String[] params) {

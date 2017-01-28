@@ -4,13 +4,9 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import com.cabreramax.challenge.commands.InvalidCommand;
-import com.cabreramax.challenge.commands.LeftCommand;
-import com.cabreramax.challenge.commands.MoveCommand;
-import com.cabreramax.challenge.commands.PlaceCommand;
-import com.cabreramax.challenge.commands.ReportCommand;
-import com.cabreramax.challenge.commands.RightCommand;
+import com.cabreramax.challenge.domains.commands.*;
 import com.cabreramax.challenge.domains.Position;
+import com.cabreramax.challenge.domains.orientations.*;
 
 public class CommandsTranslatorTest {
 
@@ -72,5 +68,17 @@ public class CommandsTranslatorTest {
     	PlaceCommand placeCommand = (PlaceCommand) CommandsTranslator.getInstance().translate(input);
     	
         assertEquals( placePosition, placeCommand.getPosition() );
+    }
+
+    @Test
+    public void testWhenValidPlaceInputThenPlaceCommandHasParameterizedOrientation() {
+        
+    	String[] input = {"PLACE", "0,0,NORTH"};
+    	
+    	Orientation placeOrientation = new NorthOrientation();
+    	
+    	PlaceCommand placeCommand = (PlaceCommand) CommandsTranslator.getInstance().translate(input);
+    	
+        assertEquals( placeOrientation, placeCommand.getOrientation() );
     }
 }

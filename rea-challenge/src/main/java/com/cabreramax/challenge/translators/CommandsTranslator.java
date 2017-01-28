@@ -3,7 +3,7 @@ package com.cabreramax.challenge.translators;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.cabreramax.challenge.commands.*;
+import com.cabreramax.challenge.domains.commands.*;
 import com.cabreramax.challenge.exceptions.InvalidParameterException;
 import com.cabreramax.challenge.utils.ParseUtils;
 
