@@ -1,13 +1,14 @@
 package com.cabreramax.challenge.domains;
 
-import com.cabreramax.challenge.exceptions.InvalidPositionException;
+import com.cabreramax.challenge.exceptions.InvalidNumberException;
+import com.cabreramax.challenge.utils.ValidationUtils;
 
 public class Position {
 
 	private int x;
 	private int y;
 
-	public Position(int x, int y) throws InvalidPositionException {
+	public Position(int x, int y) throws InvalidNumberException {
 		setX(x);
 		setY(y);
 	}
@@ -16,8 +17,8 @@ public class Position {
 		return x;
 	}
 
-	public void setX(int x) throws InvalidPositionException {
-		validatePositive(x);
+	public void setX(int x) throws InvalidNumberException {
+		ValidationUtils.validateZeroOrPositive(x);
 		this.x = x;
 	}
 
@@ -25,8 +26,8 @@ public class Position {
 		return y;
 	}
 
-	public void setY(int y) throws InvalidPositionException {
-		validatePositive(y);
+	public void setY(int y) throws InvalidNumberException {
+		ValidationUtils.validateZeroOrPositive(y);
 		this.y = y;
 	}
 	
@@ -42,10 +43,6 @@ public class Position {
 		}
 		
 		return equals;
-	}
-
-	private void validatePositive(int n) throws InvalidPositionException {
-		if ( n < 0 ) throw new InvalidPositionException("Positions has to be positive");
 	}
 
 }

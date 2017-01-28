@@ -10,7 +10,7 @@ import org.junit.Test;
 import com.cabreramax.challenge.domains.commands.*;
 import com.cabreramax.challenge.domains.Position;
 import com.cabreramax.challenge.domains.orientations.*;
-import com.cabreramax.challenge.exceptions.InvalidPositionException;
+import com.cabreramax.challenge.exceptions.InvalidNumberException;
 
 public class CommandsTranslatorTest {
 
@@ -69,7 +69,7 @@ public class CommandsTranslatorTest {
     	
     	Position placePosition = null;
 		
-    	try { placePosition = new Position(0,0); } catch (InvalidPositionException e) { fail("Should create position succesfully"); }
+    	try { placePosition = new Position(0,0); } catch (InvalidNumberException e) { fail("Should create position succesfully"); }
     	
     	PlaceCommand placeCommand = (PlaceCommand) CommandsTranslator.getInstance().translate(input);
     	
