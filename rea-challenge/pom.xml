@@ -20,6 +20,8 @@
             <descriptorRefs>
                 <descriptorRef>jar-with-dependencies</descriptorRef>
             </descriptorRefs>
+            <finalName>rea-challenge</finalName>
+            <appendAssemblyId>false</appendAssemblyId>
             <archive>
                 <manifest>
                     <mainClass>com.cabreramax.challenge.App</mainClass>
