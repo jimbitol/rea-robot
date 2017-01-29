@@ -1,19 +1,20 @@
-package com.cabreramax.challenge.translators;
+package com.cabreramax.challenge.factories;
 
 import static org.junit.Assert.*;
 
 import org.junit.Test;
 
 import com.cabreramax.challenge.domains.orientations.*;
+import com.cabreramax.challenge.factories.OrientationsFactory;
 
-public class OrientationsTranslatorTest {
+public class OrientationsFactoryTest {
 
     @Test
     public void testWhenValidNorthInputThenTranslateToNorthOrientation() {
         
         String input = "NORTH";
         
-        assertTrue( OrientationsTranslator.getInstance().translate(input) instanceof NorthOrientation );
+        assertTrue( OrientationsFactory.getInstance().getOrientation(input) instanceof NorthOrientation );
     }
 
     @Test
@@ -21,7 +22,7 @@ public class OrientationsTranslatorTest {
         
         String input = "SOUTH";
         
-        assertTrue( OrientationsTranslator.getInstance().translate(input) instanceof SouthOrientation );
+        assertTrue( OrientationsFactory.getInstance().getOrientation(input) instanceof SouthOrientation );
     }
 
     @Test
@@ -29,7 +30,7 @@ public class OrientationsTranslatorTest {
         
         String input = "EAST";
         
-        assertTrue( OrientationsTranslator.getInstance().translate(input) instanceof EastOrientation );
+        assertTrue( OrientationsFactory.getInstance().getOrientation(input) instanceof EastOrientation );
     }
 
     @Test
@@ -37,7 +38,7 @@ public class OrientationsTranslatorTest {
         
         String input = "WEST";
         
-        assertTrue( OrientationsTranslator.getInstance().translate(input) instanceof WestOrientation );
+        assertTrue( OrientationsFactory.getInstance().getOrientation(input) instanceof WestOrientation );
     }
 
     @Test
@@ -45,7 +46,7 @@ public class OrientationsTranslatorTest {
         
         String input = "SOUTHEAST";
         
-        assertTrue( OrientationsTranslator.getInstance().translate(input) instanceof InvalidOrientation );
+        assertTrue( OrientationsFactory.getInstance().getOrientation(input) instanceof InvalidOrientation );
     }
 
     @Test
@@ -53,7 +54,7 @@ public class OrientationsTranslatorTest {
         
         String input = "north";
         
-        assertTrue( OrientationsTranslator.getInstance().translate(input) instanceof NorthOrientation );
+        assertTrue( OrientationsFactory.getInstance().getOrientation(input) instanceof NorthOrientation );
     }
 
     @Test
@@ -61,7 +62,7 @@ public class OrientationsTranslatorTest {
         
         String input = "south";
         
-        assertTrue( OrientationsTranslator.getInstance().translate(input) instanceof SouthOrientation );
+        assertTrue( OrientationsFactory.getInstance().getOrientation(input) instanceof SouthOrientation );
     }
 
     @Test
@@ -69,7 +70,7 @@ public class OrientationsTranslatorTest {
         
         String input = "east";
         
-        assertTrue( OrientationsTranslator.getInstance().translate(input) instanceof EastOrientation );
+        assertTrue( OrientationsFactory.getInstance().getOrientation(input) instanceof EastOrientation );
     }
 
     @Test
@@ -77,6 +78,6 @@ public class OrientationsTranslatorTest {
         
         String input = "west";
         
-        assertTrue( OrientationsTranslator.getInstance().translate(input) instanceof WestOrientation );
+        assertTrue( OrientationsFactory.getInstance().getOrientation(input) instanceof WestOrientation );
     }
 }

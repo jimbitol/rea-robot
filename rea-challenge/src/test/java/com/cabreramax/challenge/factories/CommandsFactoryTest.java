@@ -1,4 +1,4 @@
-package com.cabreramax.challenge.translators;
+package com.cabreramax.challenge.factories;
 
 import static org.junit.Assert.*;
 
@@ -11,15 +11,16 @@ import com.cabreramax.challenge.domains.commands.*;
 import com.cabreramax.challenge.domains.Position;
 import com.cabreramax.challenge.domains.orientations.*;
 import com.cabreramax.challenge.exceptions.InvalidNumberException;
+import com.cabreramax.challenge.factories.CommandsFactory;
 
-public class CommandsTranslatorTest {
+public class CommandsFactoryTest {
 
     @Test
     public void testWhenValidMoveInputThenTranslateToMoveCommand() {
         
         String[] input = {"MOVE"};
         
-        assertTrue( CommandsTranslator.getInstance().translate(input) instanceof MoveCommand );
+        assertTrue( CommandsFactory.getInstance().getCommand(input) instanceof MoveCommand );
     }
 
     @Test
@@ -27,7 +28,7 @@ public class CommandsTranslatorTest {
         
     	String[] input = {"LEFT"};
         
-        assertTrue( CommandsTranslator.getInstance().translate(input) instanceof LeftCommand );
+        assertTrue( CommandsFactory.getInstance().getCommand(input) instanceof LeftCommand );
     }
 
     @Test
@@ -35,7 +36,7 @@ public class CommandsTranslatorTest {
         
     	String[] input = {"RIGHT"};
         
-        assertTrue( CommandsTranslator.getInstance().translate(input) instanceof RightCommand );
+        assertTrue( CommandsFactory.getInstance().getCommand(input) instanceof RightCommand );
     }
 
     @Test
@@ -43,7 +44,7 @@ public class CommandsTranslatorTest {
         
     	String[] input = {"REPORT"};
         
-        assertTrue( CommandsTranslator.getInstance().translate(input) instanceof ReportCommand );
+        assertTrue( CommandsFactory.getInstance().getCommand(input) instanceof ReportCommand );
     }
 
     @Test
@@ -51,7 +52,7 @@ public class CommandsTranslatorTest {
         
     	String[] input = {"PLACE", "0,0,NORTH"};
         
-        assertTrue( CommandsTranslator.getInstance().translate(input) instanceof PlaceCommand );
+        assertTrue( CommandsFactory.getInstance().getCommand(input) instanceof PlaceCommand );
     }
     
     @Test
@@ -59,7 +60,7 @@ public class CommandsTranslatorTest {
         
     	String[] input = {"JUMP"};
         
-        assertTrue( CommandsTranslator.getInstance().translate(input) instanceof InvalidCommand );
+        assertTrue( CommandsFactory.getInstance().getCommand(input) instanceof InvalidCommand );
     }
 
     @Test
@@ -71,7 +72,7 @@ public class CommandsTranslatorTest {
 		
     	try { placePosition = new Position(0,0); } catch (InvalidNumberException e) { fail("Should create position succesfully"); }
     	
-    	PlaceCommand placeCommand = (PlaceCommand) CommandsTranslator.getInstance().translate(input);
+    	PlaceCommand placeCommand = (PlaceCommand) CommandsFactory.getInstance().getCommand(input);
     	
         assertEquals( placePosition, placeCommand.getPosition() );
     }
@@ -83,7 +84,7 @@ public class CommandsTranslatorTest {
     	
     	Orientation placeOrientation = new NorthOrientation();
     	
-    	PlaceCommand placeCommand = (PlaceCommand) CommandsTranslator.getInstance().translate(input);
+    	PlaceCommand placeCommand = (PlaceCommand) CommandsFactory.getInstance().getCommand(input);
     	
         assertEquals( placeOrientation, placeCommand.getOrientation() );
     }
@@ -93,7 +94,7 @@ public class CommandsTranslatorTest {
         
     	String[] input = {"PLACE", "-1,1,NORTH"};
     	
-    	assertTrue( CommandsTranslator.getInstance().translate(input) instanceof InvalidCommand );
+    	assertTrue( CommandsFactory.getInstance().getCommand(input) instanceof InvalidCommand );
     }
 
     @Test
@@ -101,7 +102,7 @@ public class CommandsTranslatorTest {
         
     	String[] input = {"PLACE", "1,A,NORTH"};
     	
-    	assertTrue( CommandsTranslator.getInstance().translate(input) instanceof InvalidCommand );
+    	assertTrue( CommandsFactory.getInstance().getCommand(input) instanceof InvalidCommand );
     }
 
     @Test
@@ -109,7 +110,7 @@ public class CommandsTranslatorTest {
         
     	String[] input = {"PLACE", "2,1,SOUTHWEST"};
     	
-    	assertTrue( CommandsTranslator.getInstance().translate(input) instanceof InvalidCommand );
+    	assertTrue( CommandsFactory.getInstance().getCommand(input) instanceof InvalidCommand );
     }
 
     @Test
@@ -117,7 +118,7 @@ public class CommandsTranslatorTest {
         
         String[] input = {"move"};
         
-        assertTrue( CommandsTranslator.getInstance().translate(input) instanceof MoveCommand );
+        assertTrue( CommandsFactory.getInstance().getCommand(input) instanceof MoveCommand );
     }
 
     @Test
@@ -125,7 +126,7 @@ public class CommandsTranslatorTest {
         
     	String[] input = {"left"};
         
-        assertTrue( CommandsTranslator.getInstance().translate(input) instanceof LeftCommand );
+        assertTrue( CommandsFactory.getInstance().getCommand(input) instanceof LeftCommand );
     }
 
     @Test
@@ -133,7 +134,7 @@ public class CommandsTranslatorTest {
         
     	String[] input = {"right"};
         
-        assertTrue( CommandsTranslator.getInstance().translate(input) instanceof RightCommand );
+        assertTrue( CommandsFactory.getInstance().getCommand(input) instanceof RightCommand );
     }
 
     @Test
@@ -141,7 +142,7 @@ public class CommandsTranslatorTest {
         
     	String[] input = {"report"};
         
-        assertTrue( CommandsTranslator.getInstance().translate(input) instanceof ReportCommand );
+        assertTrue( CommandsFactory.getInstance().getCommand(input) instanceof ReportCommand );
     }
 
     @Test
@@ -149,7 +150,7 @@ public class CommandsTranslatorTest {
         
     	String[] input = {"place", "0,0,NORTH"};
         
-        assertTrue( CommandsTranslator.getInstance().translate(input) instanceof PlaceCommand );
+        assertTrue( CommandsFactory.getInstance().getCommand(input) instanceof PlaceCommand );
     }
     
     @Test
@@ -157,7 +158,7 @@ public class CommandsTranslatorTest {
     	
     	List<String[]> inputsReceived = buildInputsList();
     	
-    	assertArrayEquals( buildExpectedCommandsList() , CommandsTranslator.getInstance().translate(inputsReceived).toArray() );
+    	assertArrayEquals( buildExpectedCommandsList() , CommandsFactory.getInstance().getCommands(inputsReceived).toArray() );
     }
     
     private List<String[]> buildInputsList() {

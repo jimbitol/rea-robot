@@ -1,11 +1,12 @@
 package com.cabreramax.challenge.domains.commands;
 
 import com.cabreramax.challenge.domains.Position;
+import com.cabreramax.challenge.domains.ToyRobot;
 import com.cabreramax.challenge.domains.orientations.InvalidOrientation;
 import com.cabreramax.challenge.domains.orientations.Orientation;
 import com.cabreramax.challenge.exceptions.InvalidOrientationException;
 import com.cabreramax.challenge.exceptions.InvalidParameterException;
-import com.cabreramax.challenge.translators.OrientationsTranslator;
+import com.cabreramax.challenge.factories.OrientationsFactory;
 
 public class PlaceCommand extends Command {
 	
@@ -20,11 +21,16 @@ public class PlaceCommand extends Command {
 
 			setPosition(new Position( Integer.parseInt(params[0]) , Integer.parseInt(params[1]) ));
 			
-			setOrientation( OrientationsTranslator.getInstance().translate(params[2]) );
+			setOrientation( OrientationsFactory.getInstance().getOrientation(params[2]) );
 			
 		} catch ( Exception e ) {
 			throw new InvalidParameterException(e.getMessage());
 		}
+	}
+	
+	@Override
+	public void execute(ToyRobot robot) {
+		robot.place(getPosition(), getOrientation());
 	}
 
 	public Position getPosition() {
@@ -47,5 +53,6 @@ public class PlaceCommand extends Command {
 	public void validateOrientation( Orientation orientation ) throws InvalidOrientationException {
 		if ( orientation instanceof InvalidOrientation ) throw new InvalidOrientationException("Has to be a valid Orientation");
 	}
+
 
 }

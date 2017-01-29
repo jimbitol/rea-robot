@@ -12,8 +12,7 @@ public class EastOrientation extends Orientation {
 
 	@Override
 	public Position getNextPositionOf(Position position) throws InvalidNumberException {
-		position.setX( position.getX() + 1 );
-		return position;
+		return new Position( position.getX() + 1, position.getY() );
 	}
 
 	@Override

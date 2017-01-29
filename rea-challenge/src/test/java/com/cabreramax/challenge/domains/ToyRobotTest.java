@@ -11,7 +11,7 @@ import org.junit.Test;
 
 import com.cabreramax.challenge.domains.orientations.*;
 import com.cabreramax.challenge.exceptions.InvalidNumberException;
-import com.cabreramax.challenge.translators.OrientationsTranslator;
+import com.cabreramax.challenge.factories.OrientationsFactory;
 
 public class ToyRobotTest {
 	
@@ -310,7 +310,7 @@ public class ToyRobotTest {
 	}
 	
 	private Orientation getOrientation(String orientation) {
-		return OrientationsTranslator.getInstance().translate(orientation);
+		return OrientationsFactory.getInstance().getOrientation(orientation);
 	}
 	
 	private void initializeTable(int x, int y) {

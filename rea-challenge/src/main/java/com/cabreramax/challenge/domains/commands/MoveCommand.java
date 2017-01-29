@@ -1,5 +1,7 @@
 package com.cabreramax.challenge.domains.commands;
 
+import com.cabreramax.challenge.domains.ToyRobot;
+
 public class MoveCommand extends Command {
 
 	@Override
@@ -7,4 +9,8 @@ public class MoveCommand extends Command {
 		// TODO This command does not receive parameters yet
 	}
 
+	@Override
+	public void execute(ToyRobot robot) {
+		robot.move();
+	}
 }
