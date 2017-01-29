@@ -1,8 +1,12 @@
 package com.cabreramax.challenge.domains;
 
+
 import com.cabreramax.challenge.exceptions.InvalidNumberException;
 import com.cabreramax.challenge.utils.ValidationUtils;
 
+/**
+ * Table knows its bounds, one table only
+ */
 public class Table {
 
 	private int xUnits = 1; // default 1 unit
@@ -16,6 +20,15 @@ public class Table {
 	public static Table getInstance() {
 		if ( instance == null ) instance = new Table();
 		return instance;
+	}
+	
+	public void init(int x, int y) {
+		try { 
+	    	Table.getInstance().setxUnits(x);
+	    	Table.getInstance().setyUnits(y);
+		} catch ( Exception e ) {
+			System.err.println(e);
+		}
 	}
 
 	public int getxUnits() {

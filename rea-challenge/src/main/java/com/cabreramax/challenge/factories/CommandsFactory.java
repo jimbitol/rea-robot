@@ -7,6 +7,9 @@ import com.cabreramax.challenge.domains.commands.*;
 import com.cabreramax.challenge.exceptions.InvalidParameterException;
 import com.cabreramax.challenge.utils.ParseUtils;
 
+/**
+ * Returns a Command Object to be executed, Only one CommandFactory
+ */
 public class CommandsFactory {
 	
 	private static CommandsFactory instance;
@@ -39,6 +42,9 @@ public class CommandsFactory {
 		return command;
 	}
 	
+	/**
+	 * Returns a command, and assign the parameters to it if any
+	 */
 	public Command getCommand(String[] input) {
 		
 		Command command = getCommand(input[0]);
@@ -56,7 +62,10 @@ public class CommandsFactory {
 	
 		return command;
 	}
-
+	
+	/**
+	 * Translates a list of inputs and retrieve a list of associated commands
+	 */
 	public List<Command> getCommands( List<String[]> inputs ) {
 		
 		List<Command> translatedCommands = new ArrayList<Command>();

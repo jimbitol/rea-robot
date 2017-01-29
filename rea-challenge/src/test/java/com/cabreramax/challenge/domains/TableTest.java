@@ -15,7 +15,7 @@ public class TableTest {
 		
     	try { position = new Position(1,1); } catch (InvalidNumberException e) { fail("Should create position succesfully"); }
     	
-    	try { buildTable(5,5); } catch (InvalidNumberException e) { fail("Should initiate table succesfully"); }
+    	Table.getInstance().init(5, 5);
     	
         assertTrue( Table.getInstance().isPositionInsideBounds( position ) );
     }
@@ -37,13 +37,8 @@ public class TableTest {
 		
     	try { position = new Position(5,5); } catch (InvalidNumberException e) { fail("Should create position succesfully"); }
     	
-    	try { buildTable(5,5); } catch (InvalidNumberException e) { fail("Should initiate table succesfully"); }
+    	Table.getInstance().init(5, 5);
     	
         assertFalse( Table.getInstance().isPositionInsideBounds( position ) );
-    }
-    
-    private void buildTable(int x, int y) throws InvalidNumberException {    		
-		Table.getInstance().setxUnits(x);
-    	Table.getInstance().setyUnits(y);
     }
 }

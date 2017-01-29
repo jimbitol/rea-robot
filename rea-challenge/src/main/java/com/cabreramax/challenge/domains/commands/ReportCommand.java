@@ -1,6 +1,6 @@
 package com.cabreramax.challenge.domains.commands;
 
-import com.cabreramax.challenge.domains.ToyRobot;
+import com.cabreramax.challenge.domains.Robot;
 
 public class ReportCommand extends Command {
 
@@ -10,7 +10,7 @@ public class ReportCommand extends Command {
 	}
 
 	@Override
-	public void execute(ToyRobot robot) {
+	public void execute(Robot robot) {
 		robot.report();
 	}
 

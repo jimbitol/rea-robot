@@ -9,6 +9,9 @@ import java.util.List;
 
 import com.cabreramax.challenge.utils.ParseUtils;
 
+/**
+ * Reads inputs from file
+ */
 public class FileInputHandler {
 	
 	public List<String[]> handleInput( String inputsPath ) throws FileNotFoundException {
@@ -25,7 +28,7 @@ public class FileInputHandler {
             String line;
             
             while ( (line = br.readLine()) != null ) {
-            	inputsList.add(line.split(ParseUtils.COMMAND_PARAMETER_INPUT_SEPARATOR)); // we expect a command and (optional) params
+            	inputsList.add(line.split(ParseUtils.COMMAND_PARAMETER_INPUT_SEPARATOR)); // we expect one command and (optional) params
             }
             
         } catch (IOException e) {

@@ -6,7 +6,6 @@ public class OrientationsFactory {
 	
 	private static OrientationsFactory instance;
 	
-	
 	private OrientationsFactory() { }
 	
 	public static OrientationsFactory getInstance() {

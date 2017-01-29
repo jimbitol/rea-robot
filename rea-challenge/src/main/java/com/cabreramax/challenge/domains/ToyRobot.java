@@ -1,79 +1,76 @@
 package com.cabreramax.challenge.domains;
 
 import com.cabreramax.challenge.domains.orientations.Orientation;
-import com.cabreramax.challenge.exceptions.InvalidNumberException;
-import com.cabreramax.challenge.utils.ValidationUtils;
+import com.cabreramax.challenge.exceptions.InvalidOrientationException;
+import com.cabreramax.challenge.exceptions.InvalidPositionException;
 
-public class ToyRobot {
+public class ToyRobot extends Robot {
 	
-	private Position position;
-	private Orientation orientation;
-
-	public boolean isPlaced() {
-		return (getPosition() != null) && (getOrientation() != null);
-	}
-
-	public void place(Position position, Orientation orientation) {
+	/**
+	 * Only place if position is inside bounds and orientation is valid
+	 * @throws InvalidOrientationException 
+	 * @throws InvalidPositionException 
+	 */
+	public void place(Position position, Orientation orientation) throws InvalidOrientationException, InvalidPositionException {
 		
-		if ( ValidationUtils.isPositionInsideBounds(position) && 
-				ValidationUtils.isValidOrientation(orientation) ) {
-			
-			setPosition(position);
-			setOrientation(orientation);
-		}
+		setPosition(position);
+		setOrientation(orientation);
 	}
-
+	
+	/**
+	 * Only move if robot is placed and next position is inside bounds
+	 */
 	public void move() {
 		
 		if ( isPlaced() ) {
 			
-			Position nextPosition = null;
-			
 			try {
-				nextPosition = getOrientation().getNextPositionOf( getPosition() );
-			} catch (InvalidNumberException e) {
-				// TODO
+				
+				Position nextPosition = getOrientation().getNextPositionOf( getPosition() );
+				
+				setPosition(nextPosition);
+				
+			} catch ( Exception e ) {
+				System.err.println(e);
 			}
-			
-			if ( ValidationUtils.isPositionInsideBounds(nextPosition) ) setPosition(nextPosition);
 		}
 	}
-
+	
+	/**
+	 * Only turns if robot is placed
+	 */
 	public void left() {
 		
 		if ( isPlaced() ) {
-			setOrientation(getOrientation().getLeftOrientation());
+			try {
+				setOrientation(getOrientation().getLeftOrientation());
+			} catch (InvalidOrientationException e) {
+				System.err.println(e); // it should not fail
+			}
 		}
 	}
-
+	
+	/**
+	 * Only turns if robot is placed
+	 */
 	public void right() {
 		
 		if ( isPlaced() ) {
-			setOrientation(getOrientation().getRightOrientation());
+			try {
+				setOrientation(getOrientation().getRightOrientation());
+			} catch (InvalidOrientationException e) {
+				System.err.println(e); // it should not fail
+			}
 		}
 	}
-
+	
+	/**
+	 * Only reports if robot is placed
+	 */
 	public void report() {
 		
 		if ( isPlaced() ) {
 			System.out.println(getPosition().toString() + "," + getOrientation().toString());
 		}
 	}
-
-	public Position getPosition() {
-		return position;
-	}
-
-	public Orientation getOrientation() {
-		return orientation;
-	}
-
-	public void setPosition(Position position) {
-		this.position = position;
-	}
-
-	public void setOrientation(Orientation orientation) {
-		this.orientation = orientation;
-	}
-
 }

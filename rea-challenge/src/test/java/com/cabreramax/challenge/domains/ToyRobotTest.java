@@ -11,11 +11,13 @@ import org.junit.Test;
 
 import com.cabreramax.challenge.domains.orientations.*;
 import com.cabreramax.challenge.exceptions.InvalidNumberException;
+import com.cabreramax.challenge.exceptions.InvalidOrientationException;
+import com.cabreramax.challenge.exceptions.InvalidPositionException;
 import com.cabreramax.challenge.factories.OrientationsFactory;
 
 public class ToyRobotTest {
 	
-	ToyRobot bb8;
+	Robot bb8;
 	ByteArrayOutputStream printOut = new ByteArrayOutputStream();
 	PrintStream stdout;
 	
@@ -24,9 +26,9 @@ public class ToyRobotTest {
 		
     	bb8 = new ToyRobot();
     	
-    	initializeTable(5,5);
+    	Table.getInstance().init(5,5);
     	
-    	// configure system out to test print
+    	// configure system out to test prints
 		stdout = System.out;
 	    System.setOut(new PrintStream(printOut));
 	}
@@ -43,7 +45,7 @@ public class ToyRobotTest {
         
     	assertFalse(bb8.isPlaced()); // not placed
     	
-    	bb8.place(getPosition(0,0), getOrientation("NORTH"));
+    	try { bb8.place(getPosition(0,0), getOrientation("NORTH")); } catch (Exception e) { fail("Should place successfuly"); }
     	
     	assertTrue(bb8.isPlaced()); // placed
     }
@@ -53,9 +55,16 @@ public class ToyRobotTest {
         
     	assertFalse(bb8.isPlaced()); // not placed
     	
-    	bb8.place(getPosition(10,10), getOrientation("NORTH"));
-    	
-    	assertFalse(bb8.isPlaced()); // not placed
+    	try { 
+    		
+    		bb8.place(getPosition(10,10), getOrientation("NORTH")); 
+
+    		fail("The robot should not be placed in outbound position"); 
+    		
+    	} catch (Exception e) { 
+    		
+    		assertFalse(bb8.isPlaced()); // not placed
+    	}
     }
 
 	@Test
@@ -99,79 +108,63 @@ public class ToyRobotTest {
 	@Test
 	public void testWhenMoveNorthInsideBoundsThenRobotHasNewPositionAndSameOrientation() {
         
-    	bb8.place(getPosition(0,0), getOrientation("NORTH"));
+		try { bb8.place(getPosition(0,0), getOrientation("NORTH")); } catch (Exception e) { fail("Should place successfuly"); }
 
-    	assertNotNull( bb8.getPosition() );
-    	assertEquals(  0, bb8.getPosition().getX() );
-    	assertEquals( 0, bb8.getPosition().getY() );
+    	validatePosition(0,0);
     	assertTrue( bb8.getOrientation() instanceof NorthOrientation );
     	
     	bb8.move();
 
-    	assertNotNull( bb8.getPosition() );
-    	assertEquals(  0, bb8.getPosition().getX() );
-    	assertEquals( 1, bb8.getPosition().getY() );
+    	validatePosition(0,1);
     	assertTrue( bb8.getOrientation() instanceof NorthOrientation );
     }
 
 	@Test
 	public void testWhenMoveWestInsideBoundsThenRobotHasNewPositionAndSameOrientation() {
         
-    	bb8.place(getPosition(1,1), getOrientation("WEST"));
+		try { bb8.place(getPosition(1,1), getOrientation("WEST")); } catch (Exception e) { fail("Should place successfuly"); }
 
-    	assertNotNull( bb8.getPosition() );
-    	assertEquals(  1, bb8.getPosition().getX() );
-    	assertEquals( 1, bb8.getPosition().getY() );
+    	validatePosition(1,1);
     	assertTrue( bb8.getOrientation() instanceof WestOrientation );
     	
     	bb8.move();
 
-    	assertNotNull( bb8.getPosition() );
-    	assertEquals(  0, bb8.getPosition().getX() );
-    	assertEquals( 1, bb8.getPosition().getY() );
+    	validatePosition(0,1);
     	assertTrue( bb8.getOrientation() instanceof WestOrientation );
     }
 
 	@Test
 	public void testWhenMoveSouthInsideBoundsThenRobotHasNewPositionAndSameOrientation() {
         
-    	bb8.place(getPosition(1,1), getOrientation("SOUTH"));
+		try { bb8.place(getPosition(1,1), getOrientation("SOUTH")); } catch (Exception e) { fail("Should place successfuly"); }
 
-    	assertNotNull( bb8.getPosition() );
-    	assertEquals(  1, bb8.getPosition().getX() );
-    	assertEquals( 1, bb8.getPosition().getY() );
+    	validatePosition(1,1);
     	assertTrue( bb8.getOrientation() instanceof SouthOrientation );
     	
     	bb8.move();
 
-    	assertNotNull( bb8.getPosition() );
-    	assertEquals(  1, bb8.getPosition().getX() );
-    	assertEquals( 0, bb8.getPosition().getY() );
+    	validatePosition(1,0);
     	assertTrue( bb8.getOrientation() instanceof SouthOrientation  );
     }
 
 	@Test
 	public void testWhenMoveEastInsideBoundsThenRobotHasNewPositionAndSameOrientation() {
         
-    	bb8.place(getPosition(1,1), getOrientation("EAST"));
+		try { bb8.place(getPosition(1,1), getOrientation("EAST")); } catch (Exception e) { fail("Should place successfuly"); }
 
-    	assertNotNull( bb8.getPosition() );
-    	assertEquals(  1, bb8.getPosition().getX() );
-    	assertEquals( 1, bb8.getPosition().getY() );
+    	validatePosition(1,1);
     	assertTrue( bb8.getOrientation() instanceof EastOrientation );
     	
     	bb8.move();
 
-    	assertNotNull( bb8.getPosition() );
-    	assertEquals(  2, bb8.getPosition().getX() );
-    	assertEquals( 1, bb8.getPosition().getY() );
+    	validatePosition(2,1);
     	assertTrue( bb8.getOrientation() instanceof EastOrientation );
     }
 
 	@Test
 	public void testWhenLeftFromNorthThenRobotTurnsToWest() {
         
-    	bb8.place(getPosition(1,1), getOrientation("NORTH"));
+		try { bb8.place(getPosition(1,1), getOrientation("NORTH")); } catch (Exception e) { fail("Should place successfuly"); }
 
     	assertNotNull( bb8.getOrientation() );
     	assertTrue( bb8.getOrientation() instanceof NorthOrientation );
@@ -185,7 +178,7 @@ public class ToyRobotTest {
 	@Test
 	public void testWhenLeftFromWestThenRobotTurnsToSouth() {
         
-    	bb8.place(getPosition(1,1), getOrientation("WEST"));
+		try { bb8.place(getPosition(1,1), getOrientation("WEST")); } catch (Exception e) { fail("Should place successfuly"); }
 
     	assertNotNull( bb8.getOrientation() );
     	assertTrue( bb8.getOrientation() instanceof WestOrientation );
@@ -199,7 +192,7 @@ public class ToyRobotTest {
 	@Test
 	public void testWhenLeftFromSouthThenRobotTurnsToEast() {
         
-    	bb8.place(getPosition(1,1), getOrientation("SOUTH"));
+		try { bb8.place(getPosition(1,1), getOrientation("SOUTH")); } catch (Exception e) { fail("Should place successfuly"); }
 
     	assertNotNull( bb8.getOrientation() );
     	assertTrue( bb8.getOrientation() instanceof SouthOrientation );
@@ -213,7 +206,7 @@ public class ToyRobotTest {
 	@Test
 	public void testWhenLeftFromEastThenRobotTurnsToNorth() {
         
-    	bb8.place(getPosition(1,1), getOrientation("EAST"));
+		try { bb8.place(getPosition(1,1), getOrientation("EAST")); } catch (Exception e) { fail("Should place successfuly"); }
 
     	assertNotNull( bb8.getOrientation() );
     	assertTrue( bb8.getOrientation() instanceof EastOrientation );
@@ -227,7 +220,7 @@ public class ToyRobotTest {
 	@Test
 	public void testWhenRightFromWestThenRobotTurnsToNorth() {
         
-    	bb8.place(getPosition(1,1), getOrientation("WEST"));
+		try { bb8.place(getPosition(1,1), getOrientation("WEST")); } catch (Exception e) { fail("Should place successfuly"); }
 
     	assertNotNull( bb8.getOrientation() );
     	assertTrue( bb8.getOrientation() instanceof WestOrientation );
@@ -241,7 +234,7 @@ public class ToyRobotTest {
 	@Test
 	public void testWhenRightFromNorthThenRobotTurnsToEast() {
         
-    	bb8.place(getPosition(1,1), getOrientation("NORTH"));
+		try { bb8.place(getPosition(1,1), getOrientation("NORTH")); } catch (Exception e) { fail("Should place successfuly"); }
 
     	assertNotNull( bb8.getOrientation() );
     	assertTrue( bb8.getOrientation() instanceof NorthOrientation );
@@ -255,7 +248,7 @@ public class ToyRobotTest {
 	@Test
 	public void testWhenRightFromEastThenRobotTurnsToSouth() {
         
-    	bb8.place(getPosition(1,1), getOrientation("EAST"));
+		try { bb8.place(getPosition(1,1), getOrientation("EAST")); } catch (Exception e) { fail("Should place successfuly"); }
 
     	assertNotNull( bb8.getOrientation() );
     	assertTrue( bb8.getOrientation() instanceof EastOrientation );
@@ -269,7 +262,7 @@ public class ToyRobotTest {
 	@Test
 	public void testWhenRightFromSouthThenRobotTurnsToWest() {
         
-    	bb8.place(getPosition(1,1), getOrientation("SOUTH"));
+		try { bb8.place(getPosition(1,1), getOrientation("SOUTH")); } catch (Exception e) { fail("Should place successfuly"); }
 
     	assertNotNull( bb8.getOrientation() );
     	assertTrue( bb8.getOrientation() instanceof SouthOrientation );
@@ -292,13 +285,19 @@ public class ToyRobotTest {
 		
 		
 		// place and report bb8
-    	bb8.place(getPosition(3,2), getOrientation("SOUTH"));
+		try { bb8.place(getPosition(3,2), getOrientation("SOUTH")); } catch (Exception e) { fail("Should place successfuly"); }
 		
 		bb8.report();
     	
 		
 		assertEquals( expectedOutput, printOut.toString() );
     }
+	
+	private void validatePosition( int x, int y ) {
+		assertNotNull( bb8.getPosition() );
+    	assertEquals(  x, bb8.getPosition().getX() );
+    	assertEquals( y, bb8.getPosition().getY() );
+	}
 	
 	private Position getPosition(int x, int y) {
 		
@@ -311,15 +310,6 @@ public class ToyRobotTest {
 	
 	private Orientation getOrientation(String orientation) {
 		return OrientationsFactory.getInstance().getOrientation(orientation);
-	}
-	
-	private void initializeTable(int x, int y) {
-		try { 
-	    	Table.getInstance().setxUnits(x);
-	    	Table.getInstance().setyUnits(y);
-		} catch ( Exception e ) {
-			fail("Should initialize table with success");
-		}
 	}
 
 }

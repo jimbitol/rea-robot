@@ -1,7 +1,10 @@
 package com.cabreramax.challenge.domains.commands;
 
-import com.cabreramax.challenge.domains.ToyRobot;
+import com.cabreramax.challenge.domains.Robot;
 
+/**
+ * Default command does nothing
+ */
 public class InvalidCommand extends Command {
 
 	@Override
@@ -10,7 +13,7 @@ public class InvalidCommand extends Command {
 	}
 
 	@Override
-	public void execute(ToyRobot robot) {
+	public void execute(Robot robot) {
 		// Invalid command does nothing
 	}
 
