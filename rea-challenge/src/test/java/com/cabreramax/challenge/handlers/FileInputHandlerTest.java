@@ -9,14 +9,16 @@ import org.junit.Test;
 
 public class FileInputHandlerTest {
 
-	private final String COMMANDS_INPUT_FILE_PATH = getClass().getResource("/commands_inputs.txt").getPath();
+	final String COMMANDS_INPUT_FILE_PATH = getClass().getResource("/commands_inputs.txt").getPath();
 
     @Test
     public void testWhenValidFileProvidedThenReadWithoutException() {
         
+    	String[] args = { COMMANDS_INPUT_FILE_PATH };
+    	
         try {
         	
-        	(new FileInputHandler()).handleInput(COMMANDS_INPUT_FILE_PATH);
+        	(new FileInputHandler()).handleInput(args);
 
         	assertTrue( true );
         
@@ -28,11 +30,13 @@ public class FileInputHandlerTest {
     @Test
     public void testWhenValidFileProvidedThenReturnArrayWithStringInputs() {
         
+    	String[] args = { COMMANDS_INPUT_FILE_PATH };
+    	
         try {
         	
         	List<String[]> inputsListExpected = buildInputListExpected();
         	
-        	assertArrayEquals( inputsListExpected.toArray(), (new FileInputHandler()).handleInput(COMMANDS_INPUT_FILE_PATH).toArray() );
+        	assertArrayEquals( inputsListExpected.toArray(), (new FileInputHandler()).handleInput(args).toArray() );
         
         } catch ( Exception e ) {
         	fail("Should read File");
@@ -42,9 +46,11 @@ public class FileInputHandlerTest {
 	@Test
     public void testWhenInvalidFileProvidedThenThrowException() {
         
+		String[] args = { "//invalid/file/path" };
+		
         try {
         	
-        	(new FileInputHandler()).handleInput("//invalid/file/path");
+        	(new FileInputHandler()).handleInput(args);
 
         	fail("Should not read File");
         

@@ -27,7 +27,7 @@ public class Table {
 	    	Table.getInstance().setxUnits(x);
 	    	Table.getInstance().setyUnits(y);
 		} catch ( Exception e ) {
-			System.err.println(e);
+			//System.err.println(e);
 		}
 	}
 

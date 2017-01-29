@@ -11,8 +11,6 @@ import org.junit.Test;
 
 import com.cabreramax.challenge.domains.orientations.*;
 import com.cabreramax.challenge.exceptions.InvalidNumberException;
-import com.cabreramax.challenge.exceptions.InvalidOrientationException;
-import com.cabreramax.challenge.exceptions.InvalidPositionException;
 import com.cabreramax.challenge.factories.OrientationsFactory;
 
 public class ToyRobotTest {

@@ -31,7 +31,7 @@ public class ToyRobot extends Robot {
 				setPosition(nextPosition);
 				
 			} catch ( Exception e ) {
-				System.err.println(e);
+				//System.err.println(e);
 			}
 		}
 	}
@@ -45,7 +45,7 @@ public class ToyRobot extends Robot {
 			try {
 				setOrientation(getOrientation().getLeftOrientation());
 			} catch (InvalidOrientationException e) {
-				System.err.println(e); // it should not fail
+				//System.err.println(e);
 			}
 		}
 	}
@@ -59,7 +59,7 @@ public class ToyRobot extends Robot {
 			try {
 				setOrientation(getOrientation().getRightOrientation());
 			} catch (InvalidOrientationException e) {
-				System.err.println(e); // it should not fail
+				//System.err.println(e);
 			}
 		}
 	}

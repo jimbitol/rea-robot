@@ -15,15 +15,15 @@ import com.cabreramax.challenge.domains.ToyRobot;
 
 public class AppTest {
 	
-	private final String COMMANDS_INPUT_FILE_PATH = getClass().getResource("/commands_inputs.txt").getPath();
-	private final String INVALID_FILE_PATH = "//invalid/file/path.txt";
-	private final String STRAIGHT_COMMANDS_INPUT_FILE_PATH = getClass().getResource("/straight_commands_inputs.txt").getPath();
-	private final String SQUARE_RALLY_COMMANDS_INPUT_FILE_PATH = getClass().getResource("/square_rally_commands_inputs.txt").getPath();
-	private final String RESPAWN_COMMANDS_INPUT_FILE_PATH = getClass().getResource("/respawn_commands_inputs.txt").getPath();
+	final String COMMANDS_INPUT_FILE_PATH = getClass().getResource("/commands_inputs.txt").getPath();
+	final String INVALID_FILE_PATH = "//invalid/file/path.txt";
+	final String STRAIGHT_COMMANDS_INPUT_FILE_PATH = getClass().getResource("/straight_commands_inputs.txt").getPath();
+	final String SQUARE_RALLY_COMMANDS_INPUT_FILE_PATH = getClass().getResource("/square_rally_commands_inputs.txt").getPath();
+	final String RESPAWN_COMMANDS_INPUT_FILE_PATH = getClass().getResource("/respawn_commands_inputs.txt").getPath();
 		
-	private Robot bb8;
-	private ByteArrayOutputStream printOut = new ByteArrayOutputStream();
-	private PrintStream stdout;
+	Robot bb8;
+	ByteArrayOutputStream printOut = new ByteArrayOutputStream();
+	PrintStream stdout;
 	
 	@Before
 	public void setUp() {

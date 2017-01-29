@@ -2,7 +2,6 @@ package com.cabreramax.challenge.domains.commands;
 
 import com.cabreramax.challenge.domains.Position;
 import com.cabreramax.challenge.domains.Robot;
-import com.cabreramax.challenge.domains.orientations.InvalidOrientation;
 import com.cabreramax.challenge.domains.orientations.Orientation;
 import com.cabreramax.challenge.exceptions.InvalidOrientationException;
 import com.cabreramax.challenge.exceptions.InvalidParameterException;
@@ -43,7 +42,7 @@ public class PlaceCommand extends Command {
 			robot.place(getPosition(), getOrientation());
 			
 		} catch (Exception e) {
-			System.err.println(e); // it should not fail
+			//System.err.println(e);
 		}
 	}
 

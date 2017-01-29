@@ -1,6 +1,5 @@
 package com.cabreramax.challenge;
 
-import java.io.FileNotFoundException;
 import java.util.List;
 
 import com.cabreramax.challenge.domains.*;
@@ -23,7 +22,7 @@ public class App {
     	try {
     		
         	// Read command inputs from file
-    		List<String[]> inputs = handler.handleInput(args[0]);
+    		List<String[]> inputs = handler.handleInput(args);
 		
     		
 	    	// Execute commands
@@ -31,8 +30,8 @@ public class App {
 	    		command.execute(bb8);
 	    	}
     	
-    	} catch (FileNotFoundException e) {
-			System.err.println(e);
+    	} catch (Exception e) {
+    		System.err.println(e); // Or we could use log4j
 		}
     }
 }

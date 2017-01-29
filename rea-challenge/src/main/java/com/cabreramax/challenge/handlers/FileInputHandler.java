@@ -3,7 +3,6 @@ package com.cabreramax.challenge.handlers;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,7 +13,7 @@ import com.cabreramax.challenge.utils.ParseUtils;
  */
 public class FileInputHandler {
 	
-	public List<String[]> handleInput( String inputsPath ) throws FileNotFoundException {
+	public List<String[]> handleInput( String[] inputs ) throws FileNotFoundException {
 			
 		List<String[]> inputsList = new ArrayList<String[]>();
 		
@@ -23,7 +22,7 @@ public class FileInputHandler {
 		
 		try {
 			
-			br = new BufferedReader( new FileReader( inputsPath ) );
+			br = new BufferedReader( new FileReader( inputs[0] ) );
 			
             String line;
             
@@ -31,7 +30,7 @@ public class FileInputHandler {
             	inputsList.add(line.split(ParseUtils.COMMAND_PARAMETER_INPUT_SEPARATOR)); // we expect one command and (optional) params
             }
             
-        } catch (IOException e) {
+        } catch (Exception e) {
             
         	throw new FileNotFoundException("Invalid Path");
             
